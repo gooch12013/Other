@@ -1,0 +1,58 @@
+
+#include <EEPROM.h>
+
+struct MyObject {
+
+  long startAddress;
+
+  long dTime;
+
+  long iTime;
+
+  char name[20];
+};
+
+void setup() {
+
+  Serial.begin(9600);
+
+  while (!Serial) {
+
+    ; // wait for serial port to connect. Needed for native USB port only
+
+  }
+
+  int eeAddress = 0;   //Location we want the data to be put.
+
+  //Data to store.
+
+  MyObject customVar = {
+
+    500,
+
+    3000,
+
+    3000,
+
+    "Fogger controler"
+
+  };
+
+  eeAddress += sizeof(float); //Move address to the next byte after float 'f'.
+
+  //EEPROM.put(eeAddress, customVar); // writes the customVar to EEPROM
+
+  //Serial.print("Written custom data type! \n\nView the example sketch eeprom_get to see how you can retrieve the values!\n\n");
+  Serial.println(customVar.startAddress);
+
+  Serial.println(customVar.dTime);
+
+  Serial.println(customVar.iTime);
+
+  Serial.println(customVar.name);
+}
+
+void loop() {
+
+  /* Empty loop */
+}
